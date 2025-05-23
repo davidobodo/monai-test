@@ -31,7 +31,7 @@ from monailabel.utils.others.generic import download_file, strtobool
 logger = logging.getLogger(__name__)
 
 
-class SegmentationSpleen(TaskConfig):
+class RBSegmentation1(TaskConfig):
     def __init__(self):
         super().__init__()
 
@@ -79,7 +79,7 @@ class SegmentationSpleen(TaskConfig):
         logger.info(f"EPISTEMIC Enabled: {self.epistemic_enabled}; Samples: {self.epistemic_samples}")
 
     def infer(self) -> Union[InferTask, Dict[str, InferTask]]:
-        task: InferTask = lib.infers.SegmentationSpleen(
+        task: InferTask = lib.infers.RBSegmentation1(
             path=self.path,
             network=self.network,
             roi_size=self.roi_size,
@@ -93,12 +93,12 @@ class SegmentationSpleen(TaskConfig):
         output_dir = os.path.join(self.model_dir, self.name)
         load_path = self.path[0] if os.path.exists(self.path[0]) else self.path[1]
 
-        task: TrainTask = lib.trainers.SegmentationSpleen(
+        task: TrainTask = lib.trainers.RBSegmentation1(
             model_dir=output_dir,
             network=self.network,
             roi_size=self.roi_size,
             target_spacing=self.target_spacing,
-            description="Train Spleen Segmentation Model",
+            description="Train Redbrick first Segmentation Model",
             load_path=load_path,
             publish_path=self.path[1],
             labels=self.labels,
@@ -131,7 +131,7 @@ class SegmentationSpleen(TaskConfig):
                     norm="batch",
                     dropout=0.2,
                 ),
-                transforms=lib.infers.SegmentationSpleen(None).pre_transforms(),
+                transforms=lib.infers.RBSegmentation1(None).pre_transforms(),
                 num_samples=self.epistemic_samples,
             )
         return methods
