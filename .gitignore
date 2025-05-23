@@ -1,2 +1,5 @@
 /datasets
 .DS_Store
+__pycache__/
+radiology/model/sam2_hiera_large.pt
+radiology/model/sam2_hiera_l.yaml
