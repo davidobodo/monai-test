@@ -30,7 +30,7 @@ from monailabel.tasks.infer.basic_infer import BasicInferTask
 from monailabel.transform.post import Restored
 
 
-class RBSegmentationSpleen1(BasicInferTask):
+class RBSegmentation1(BasicInferTask):
     """
     This provides Inference Engine for pre-trained redbrick first segmentation (UNet) model over MSD Dataset.
     """
