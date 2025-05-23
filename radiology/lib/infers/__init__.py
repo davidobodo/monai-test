@@ -15,5 +15,6 @@ from .localization_spine import LocalizationSpine
 from .localization_vertebra import LocalizationVertebra
 from .segmentation import Segmentation
 from .segmentation_spleen import SegmentationSpleen
+from .rb_segmentation1 import RBSegmentation1
 from .segmentation_vertebra import SegmentationVertebra
 from .sw_fastedit import SWFastEdit
