@@ -30,9 +30,9 @@ from monailabel.tasks.infer.basic_infer import BasicInferTask
 from monailabel.transform.post import Restored
 
 
-class SegmentationSpleen(BasicInferTask):
+class RBSegmentationSpleen1(BasicInferTask):
     """
-    This provides Inference Engine for pre-trained spleen segmentation (UNet) model over MSD Dataset.
+    This provides Inference Engine for pre-trained redbrick first segmentation (UNet) model over MSD Dataset.
     """
 
     def __init__(
@@ -43,7 +43,7 @@ class SegmentationSpleen(BasicInferTask):
         type=InferType.SEGMENTATION,
         labels=None,
         dimension=3,
-        description="A pre-trained model for volumetric (3D) segmentation of the spleen from CT image",
+        description="A pre-trained model for volumetric (3D) segmentation of the redbrick first segmentation model",
         **kwargs,
     ):
         super().__init__(
