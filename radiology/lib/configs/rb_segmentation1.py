@@ -43,7 +43,8 @@ class RBSegmentation1(TaskConfig):
 
         # Labels
         self.labels = {
-            "spleen": 1,
+            "left kidney": 1,
+            "right kidney": 2
         }
 
         # Model Files
@@ -53,7 +54,7 @@ class RBSegmentation1(TaskConfig):
         ]
 
         # Download PreTrained Model
-        if strtobool(self.conf.get("use_pretrained_model", "true")):
+        if strtobool(self.conf.get("use_pretrained_model", "false")):
             url = f"{self.conf.get('pretrained_path', self.PRE_TRAINED_PATH)}"
             url = f"{url}/radiology_segmentation_unet_spleen_total_seg.pt"
             download_file(url, self.path[0])
@@ -66,7 +67,7 @@ class RBSegmentation1(TaskConfig):
         self.network = UNet(
             spatial_dims=3,
             in_channels=1,
-            out_channels=2,
+            out_channels=len(self.labels) + 1,  # labels plus background
             channels=[16, 32, 64, 128, 256],
             strides=[2, 2, 2, 2],
             num_res_units=2,
